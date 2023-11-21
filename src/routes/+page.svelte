@@ -1,2 +1,17 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+let list = ['Make poop', 'Fart',]
+let text = ''
+function updateText(textChars) {
+  text = textChars
+}
+function addToList() {
+    list = [...list, text]
+    text = ''
+}
+</script>
+
+<h1>Todo App</h1>
+<h3>{text}</h3>
+<ul>{list}</ul>
+<input bind:value={text} type="text"/>
+<button on:click={addToList}>Add Todo</button>

@@ -2,12 +2,9 @@
 let list = []
 let text = ''
 let time = null
-function updateText(textChars) {
-  text = textChars
-}
 function addToList() {
   if(text && time) {
-    const item = { id: list.length, title: text, time: time}
+    const item = { id: list.length, title: text, time: time, checked: false}
     list = [...list, item]
     text = ''
     time = null
@@ -25,12 +22,23 @@ function removeFromList(item) {
   }
   .todo-list {
     list-style-type: none;
+    padding: 0;
   }
   .todo-item {
+    position: relative;
+    background-color: lightblue;
+    list-style-type: none;
     padding: 1rem;
     width: 12rem;
-    display: flex;
     flex-direction: column;
+  }
+  .todo-item-button-container {
+    display: inline;
+  }
+  .todo-item-checkbox {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
   }
   .todo-form {
     padding: 1rem;
@@ -47,7 +55,11 @@ function removeFromList(item) {
     <li class="todo-item">
       <p>{item.title}</p>
       <p>{item.time}</p>
-      <button on:click={removeFromList(item)}>Remove</button>
+      <span class="todo-item-button-container">
+        <button on:click={removeFromList(item)}>Edit Todo</button>
+        <button on:click={removeFromList(item)}>Remove Todo</button>
+      </span>
+      <input class="todo-item-checkbox" type="checkbox"/>
     </li>
     {/each}
   </ul>

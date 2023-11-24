@@ -1,3 +1,5 @@
+
+
 <script>
 let list = []
 let text = ''
@@ -13,6 +15,11 @@ function addToList() {
 function removeFromList(item) {
   list = list.filter((listItem) => listItem.id !== item.id)
 }
+function editFromList(item) {
+  list = list.filter((listItem) => listItem.id !== item.id)
+  time = item.time
+  text = item.title
+}
 </script>
 <style>
   .app-container {
@@ -26,7 +33,8 @@ function removeFromList(item) {
   }
   .todo-item {
     position: relative;
-    background-color: lightblue;
+    background-color: darkslategrey;
+    color: rgb(218, 218, 218);
     list-style-type: none;
     padding: 1rem;
     width: 12rem;
@@ -56,7 +64,7 @@ function removeFromList(item) {
       <p>{item.title}</p>
       <p>{item.time}</p>
       <span class="todo-item-button-container">
-        <button on:click={removeFromList(item)}>Edit Todo</button>
+        <button on:click={editFromList(item)}>Edit Todo</button>
         <button on:click={removeFromList(item)}>Remove Todo</button>
       </span>
       <input class="todo-item-checkbox" type="checkbox"/>
